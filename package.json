@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@prisma/client": "^6.5.0",
@@ -38,4 +39,5 @@
     "tailwindcss": "^4",
     "typescript": "5.8.2"
   }
+  
 }
