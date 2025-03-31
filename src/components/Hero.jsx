@@ -261,64 +261,70 @@ export default function Hero() {
               </ExpandableText>
               {/* Botões */}
               <motion.div
-                variants={textVariants}
-                className="flex flex-col xs:flex-row gap-2 xs:gap-3 justify-center md:justify-start mt-2 sm:mt-3"
-              >
-                <button
-                  onClick={() => handleZoom("perfil")}
-                  className="
-                    bg-white text-indigo-700 font-bold 
-                    px-3 xs:px-4 sm:px-5 py-1.5 xs:py-2 rounded-full shadow-lg 
-                    transition-transform duration-500 
-                    hover:scale-105 hover:shadow-indigo-500/30 
-                    text-[10px] xs:text-xs sm:text-sm md:text-base
-                  "
-                >
-                  Saiba Mais
-                </button>
-                <button
-                  onClick={() => handleZoom("contact")}
-                  className="
-                    bg-indigo-600 text-white font-bold 
-                    px-3 xs:px-4 sm:px-5 py-1.5 xs:py-2 rounded-full shadow-lg 
-                    transition-transform duration-500 
-                    hover:scale-105 hover:shadow-white/20
-                    text-[10px] xs:text-xs sm:text-sm md:text-base
-                  "
-                >
-                  Contrate-me
-                </button>
-              </motion.div>
+                    variants={textVariants}
+                    className="flex flex-col xs:flex-row gap-1.5 xs:gap-2 justify-center md:justify-start mt-1.5 sm:mt-2"
+                  >
+                    <button
+                      onClick={() => handleZoom("perfil")}
+                      className="bg-white text-indigo-700 font-medium 
+                        px-3 py-1.5 rounded-full shadow-lg 
+                        transition-all duration-300 
+                        hover:scale-105 active:scale-95 hover:shadow-indigo-500/30 
+                        text-xs xs:text-sm sm:text-[13px] md:text-sm
+                        min-w-[90px] xs:min-w-[100px] sm:min-w-[110px]"
+                    >
+                      Saiba Mais
+                    </button>
+                    <button
+                      onClick={() => handleZoom("contact")}
+                      className="bg-indigo-600 text-white font-medium 
+                        px-3 py-1.5 rounded-full shadow-lg 
+                        transition-all duration-300 
+                        hover:scale-105 active:scale-95 hover:shadow-white/20 
+                        text-xs xs:text-sm sm:text-[13px] md:text-sm
+                        min-w-[90px] xs:min-w-[100px] sm:min-w-[110px]"
+                    >
+                      Contrate-me
+                    </button>
+                </motion.div>
             </motion.div>
           </motion.div>
 
           {/* Mini-menu no rodapé da "tela" do dispositivo */}
-          <div
-            className="
-              flex gap-2 xs:gap-4 sm:gap-6 text-sm xs:text-base sm:text-lg 
-              bg-black/20 px-2 xs:px-4 sm:px-6 py-1.5 xs:py-2 
-              rounded-xl backdrop-blur-sm shadow
+          <div className="
+              flex gap-3 xs:gap-4 sm:gap-5 text-base sm:text-lg 
+              bg-black/30 px-3 xs:px-4 sm:px-5 py-2 xs:py-2.5 
+              rounded-xl backdrop-blur-sm shadow-lg
               items-center justify-center
-            "
-          >
-            <FaYoutube
-              onClick={() => setActiveApp("youtube")}
-              className="text-red-500 cursor-pointer hover:scale-110 transition-transform"
-            />
-            <a
-              href="https://github.com/Dev-GustavoRibeiro"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaGithub className="text-white hover:scale-110 transition-transform" />
-            </a>
-            <a
-              href="https://linkedin.com/in/gustavo-ribeiro-48b18433b/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaLinkedin className="text-blue-500 hover:scale-110 transition-transform" />
-            </a>
+              w-full max-w-[280px] xs:max-w-[320px] sm:max-w-none
+            ">
+              <button 
+                onClick={() => setActiveApp("youtube")}
+                className="text-red-500 hover:scale-110 active:scale-95 transition-transform"
+                aria-label="YouTube"
+              >
+                <FaYoutube size={18} className="xs:scale-110 sm:scale-125" />
+              </button>
+              
+              <a
+                href="https://github.com/Dev-GustavoRibeiro"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:scale-110 active:scale-95 transition-transform"
+                aria-label="GitHub"
+              >
+                <FaGithub size={18} className="xs:scale-110 sm:scale-125" />
+              </a>
+              
+              <a
+                href="https://linkedin.com/in/gustavo-ribeiro-48b18433b/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-400 hover:scale-110 active:scale-95 transition-transform"
+                aria-label="LinkedIn"
+              >
+                <FaLinkedin size={18} className="xs:scale-110 sm:scale-125" />
+              </a>
           </div>
         </motion.div>
       </div>

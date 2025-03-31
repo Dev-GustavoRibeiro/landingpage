@@ -256,19 +256,6 @@ export default function Header() {
             >
               <BsLinkedin size={20} className="text-white hover:text-blue-400" />
             </motion.a>
-            <motion.button
-              onClick={() => activateEasterEgg("MUSIC", {
-                icon: <BsSpotify />,
-                duration: 30000,
-                music: "https://www.youtube.com/embed/kJQP7kiw5Fk?autoplay=1"
-              })}
-              className="p-2 rounded-full bg-white/5 backdrop-blur-sm"
-              whileHover={{ scale: 1.1, backgroundColor: "rgba(255, 255, 255, 0.1)" }}
-              whileTap={{ scale: 0.9 }}
-              aria-label="Tocar música"
-            >
-              <BsMusicNoteBeamed size={20} className="text-white hover:text-green-400" />
-            </motion.button>
           </div>
 
           {/* Botão de Menu para mobile */}

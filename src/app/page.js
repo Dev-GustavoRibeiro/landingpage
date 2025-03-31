@@ -1,15 +1,13 @@
 // app/page.js
-
-import LayoutWrapper from "../components/LayoutWrapper"
-import Section from "../components/Section"
-
-import Hero from "../components/Hero"
-import About from "../components/About"
-import Formation from "../components/Formation"
-import Experience from "../components/Experience"
-import Skills from "../components/Skills"
-import Projects from "../components/Carousel/ProjectsSection"
-import Contact from "../components/Contact"
+import LayoutWrapper from "../components/LayoutWrapper";
+import Section from "../components/Section";
+import Hero from "../components/Hero";
+import About from "../components/About";
+import Formation from "../components/Formation";
+import Experience from "../components/Experience";
+import Skills from "../components/Skills";
+import Projects from "../components/Carousel/ProjectsSection";
+import Contact from "../components/Contacts/Contact";
 
 export default async function Home() {
   return (
@@ -18,15 +16,14 @@ export default async function Home() {
         <Hero />
       </Section>
 
-      <Section id="perfil" label="Sobre mim" background="glass" highlight data-section="about">
+      <Section id="perfil" label="Quem Sou Eu" background="none" data-section="about">
         <About />
       </Section>
 
       <Section
         id="formacao"
-        label="Formação acadêmica"
-        background="gradient"
-        highlight
+        label="Minha Formação"
+        full background="none"
         showDivider={false}
         data-section="formation"
       >
@@ -35,9 +32,8 @@ export default async function Home() {
 
       <Section
         id="experiencia"
-        label="Experiência profissional"
-        background="blur"
-        highlight
+        label="Minha Jornada Profissional"
+        background="none"
         data-section="experience"
       >
         <Experience />
@@ -45,9 +41,8 @@ export default async function Home() {
 
       <Section
         id="skills"
-        label="Habilidades técnicas"
-        background="gradient"
-        highlight
+        label="O Que Eu Domino"
+        background="none"
         data-section="skills"
       >
         <Skills />
@@ -55,9 +50,8 @@ export default async function Home() {
 
       <Section
         id="projects"
-        label="Projetos desenvolvidos"
-        background="glass"
-        highlight
+        label="Meus Trabalhos Incríveis"
+        background="none"
         data-section="projects"
       >
         <Projects />
@@ -65,13 +59,12 @@ export default async function Home() {
 
       <Section
         id="contact"
-        label="Contato e redes sociais"
+        label="Vamos Conversar?"
         background="blur"
-        highlight
         data-section="contact"
       >
         <Contact />
       </Section>
     </LayoutWrapper>
-  )
+  );
 }

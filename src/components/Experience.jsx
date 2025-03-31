@@ -31,7 +31,10 @@ export default function Experience() {
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
       variants={containerVariants}
-      className="scroll-mt-[100px] container mx-auto px-6 py-40 md:py-56 relative text-white rounded-3xl overflow-hidden shadow-[0_0_40px_rgba(124,58,237,0.4)] border border-indigo-500/30 bg-gradient-to-br from-indigo-900/10 via-[#1a1c2c]/50 to-[#0e0f1c]/60 backdrop-blur-xl"
+      className="scroll-mt-[100px] container mx-auto px-6 py-20 md:py-20 relative 
+      text-white rounded-3xl overflow-hidden shadow-[0_0_40px_rgba(124,58,237,0.4)] border 
+      border-indigo-500/30 bg-gradient-to-br from-indigo-900/10 via-[#1a1c2c]/50 to-[#0e0f1c]/60 
+      backdrop-blur-xl"
     >
       {/* Partículas decorativas */}
       <Particles
@@ -54,8 +57,8 @@ export default function Experience() {
 
       {/* Ícones flutuantes */}
       <BsLightningChargeFill className="absolute top-10 right-10 text-indigo-500/40 animate-pulse text-3xl z-10" />
-      <FaNetworkWired className="absolute bottom-10 left-10 text-indigo-400/30 animate-float text-3xl z-10" />
-      <FaLaptopCode className="absolute top-24 left-1/2 -translate-x-1/2 text-indigo-400/30 animate-bounce z-10" />
+      <FaNetworkWired className="absolute bottom-5 left-10 text-indigo-400/30 animate-float text-3xl z-10" />
+      <FaLaptopCode className="absolute top-10 left-1/2 -translate-x-1/2 text-indigo-400/30 animate-bounce z-10" />
 
       <div className="relative z-20 max-w-6xl mx-auto">
         <motion.h2

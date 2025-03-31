@@ -4,10 +4,10 @@ import { motion } from "framer-motion"
 import Particles from "react-tsparticles"
 import { useCallback, useState } from "react"
 
-const containerVariant = {
+const containerVariants = {
   hidden: {},
   visible: {
-    transition: { staggerChildren: 0.2 },
+    transition: { staggerChildren: 0.15 },
   },
 }
 
@@ -52,10 +52,13 @@ console.log("Soma de 2 + 3:", soma(2, 3));`)
       id="skills"
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.5 }}
-      variants={containerVariant}
-      className="scroll-mt-[100px] container mx-auto px-6 py-40 md:py-56 relative text-white rounded-3xl overflow-hidden shadow-[0_0_30px_rgba(124,58,237,0.3)] border border-indigo-500/20 bg-gradient-to-br from-indigo-900/10 via-indigo-900/5 to-transparent"
-    >
+      viewport={{ once: true, amount: 0.2 }}
+      variants={containerVariants}
+      className="scroll-mt-[100px] container mx-auto px-6 py-15 md:py-20 relative
+    text-white rounded-3xl overflow-hidden shadow-[0_0_40px_rgba(124,58,237,0.4)] border 
+    border-indigo-500/30 bg-gradient-to-br from-indigo-900/10 via-[#1a1c2c]/50 to-[#0e0f1c]/60 
+      backdrop-blur-xl"
+      >
       <Particles
         id="tsparticles-skills"
         init={particlesInit}

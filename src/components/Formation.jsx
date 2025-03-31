@@ -4,16 +4,15 @@ import { motion } from "framer-motion"
 import Particles from "react-tsparticles"
 import { useCallback } from "react"
 
-const containerVariant = {
+const containerVariants = {
   hidden: {},
   visible: {
-    transition: { staggerChildren: 0.2 },
+    transition: { staggerChildren: 0.15 },
   },
 }
-
 const itemVariant = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
+  visible: { opacity: 1, y: 10 },
 }
 
 export default function Formation() {
@@ -27,10 +26,13 @@ export default function Formation() {
       id="formacao"
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.5 }}
-      variants={containerVariant}
-      className="scroll-mt-[100px] container mx-auto px-6 py-40 md:py-56 relative text-white rounded-3xl overflow-hidden shadow-[0_0_30px_rgba(124,58,237,0.3)] border border-indigo-500/20 bg-gradient-to-br from-indigo-900/10 via-indigo-900/5 to-transparent"
-    >
+      viewport={{ once: true, amount: 0.2 }}
+      variants={containerVariants}
+      className="scroll-mt-[100px] container mx-auto px-6 py-15 md:py-20 relative
+    text-white rounded-3xl overflow-hidden shadow-[0_0_40px_rgba(124,58,237,0.4)] border 
+    border-indigo-500/30 bg-gradient-to-br from-indigo-900/10 via-[#1a1c2c]/50 to-[#0e0f1c]/60 
+      backdrop-blur-xl"
+      >
       {/* Partículas animadas no fundo */}
       <Particles
         id="tsparticles-formation"
@@ -54,7 +56,7 @@ export default function Formation() {
       <img
         src="https://cdn-icons-png.flaticon.com/512/1995/1995531.png"
         alt="Diploma"
-        className="absolute top-10 left-10 w-12 h-12 animate-float opacity-70"
+        className="absolute top-6 left-10 w-12 h-12 animate-float opacity-70"
       />
       <img
         src="https://cdn-icons-png.flaticon.com/512/1006/1006771.png"
