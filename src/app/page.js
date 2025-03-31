@@ -8,6 +8,7 @@ import Experience from "../components/Experience";
 import Skills from "../components/Skills";
 import Projects from "../components/Carousel/ProjectsSection";
 import Contact from "../components/Contacts/Contact";
+import Avaliable from "../components/Contacts/Avalible";
 
 export default async function Home() {
   return (
@@ -64,6 +65,15 @@ export default async function Home() {
         data-section="contact"
       >
         <Contact />
+      </Section>
+
+      <Section
+        id="avaliable"
+        label="Faça sua Avaliação"
+        background="blur"
+        data-section="avaliable"
+      >
+        <Avaliable />
       </Section>
     </LayoutWrapper>
   );

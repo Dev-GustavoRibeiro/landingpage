@@ -102,10 +102,10 @@ a equipe administrativa.`,
       accessibility: "WCAG 2.1 Compliant"
     },
     createdAt: "2024-11-23",
-    status: "prodution",
+    status: "production",
     stars: 5,
     techs: {
-      frontend: ["Bootstrap", "jQuery", "SASS"],
+      frontend: ["Bootstrap", "jQuery", "PHP"],
       backend: ["PHP 8", "MySQL"],
       tools: ["Docker", "PHPUnit"]
     },

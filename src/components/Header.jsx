@@ -2,15 +2,14 @@
 
 import Link from "next/link";
 import { useState, useEffect, useCallback } from "react";
-import { 
-  BsGithub, BsLinkedin, BsList, BsX, BsRocket, 
-  BsEmojiSunglasses, BsMusicNoteBeamed, BsStars,
-  BsHeartFill, BsLightningFill, BsRobot, BsYoutube,
-  BsPerson, BsBook, BsBriefcase, BsCodeSlash, BsCollection, BsEnvelope,
-  BsSpotify
+import {
+  BsGithub, BsLinkedin, BsList, BsX, BsRocket,
+  BsEmojiSunglasses, BsStars, BsHeartFill, BsLightningFill,
+  BsRobot, BsYoutube, BsPerson, BsBook, BsBriefcase,
+  BsCodeSlash, BsCollection, BsEnvelope, BsSpotify
 } from "react-icons/bs";
 import dynamic from "next/dynamic";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll } from "framer-motion";
 
 const MotionNav = dynamic(
   () => import("framer-motion").then((mod) => mod.motion.nav),
@@ -24,52 +23,39 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const { scrollY } = useScroll();
 
-
-  // Configuração dos Easter Eggs com músicas
   const easterEggs = {
-    "TURBO": {
-      icon: <BsRocket className="text-purple-400" />,
-      color: "from-purple-900 to-indigo-900",
-      effect: "rotate",
-      duration: 30000,
+    TURBO: {
+      icon: <BsRocket className="text-purple-400" />, color: "from-purple-900 to-indigo-900",
+      effect: "rotate", duration: 30000,
       music: "https://www.youtube.com/embed/qig2RneE3VY?autoplay=1",
       hint: "Relaxa e aproveita o flow!"
     },
-    "DANCE": {
-      icon: <BsEmojiSunglasses className="text-pink-400" />,
-      color: "from-pink-900 to-rose-900",
-      effect: "bounce",
-      duration: 30000,
+    DANCE: {
+      icon: <BsEmojiSunglasses className="text-pink-400" />, color: "from-pink-900 to-rose-900",
+      effect: "bounce", duration: 30000,
       music: "https://www.youtube.com/embed/WpzuDyiwfSg?autoplay=1",
       hint: "Hora do passinho!"
     },
-    "LOVE": {
-      icon: <BsHeartFill className="text-red-400" />,
-      color: "from-red-900 to-pink-900",
-      effect: "heartbeat",
-      duration: 30000,
+    LOVE: {
+      icon: <BsHeartFill className="text-red-400" />, color: "from-red-900 to-pink-900",
+      effect: "heartbeat", duration: 30000,
       music: "https://www.youtube.com/embed/kPa7bsKwL-c?autoplay=1",
       hint: "Amor e alegria!"
     },
-    "POWER": {
-      icon: <BsLightningFill className="text-blue-400" />,
-      color: "from-blue-900 to-cyan-900",
-      effect: "shake",
-      duration: 30000,
+    POWER: {
+      icon: <BsLightningFill className="text-blue-400" />, color: "from-blue-900 to-cyan-900",
+      effect: "shake", duration: 30000,
       music: "https://www.youtube.com/embed/_Yhyp-_hX2s?autoplay=1",
       hint: "Momento de superação!"
     },
-    "ROBOT": {
-      icon: <BsRobot className="text-green-400" />,
-      color: "from-green-900 to-emerald-900",
-      effect: "robot-dance",
-      duration: 30000,
+    ROBOT: {
+      icon: <BsRobot className="text-green-400" />, color: "from-green-900 to-emerald-900",
+      effect: "robot-dance", duration: 30000,
       music: "https://www.youtube.com/embed/8CdcCD5V-d8?autoplay=1",
       hint: "Fluxo robótico!"
     }
   };
 
-  // Links de navegação com ícones
   const navLinks = [
     { label: "Perfil", href: "#perfil", icon: <BsPerson className="mr-2" /> },
     { label: "Formação", href: "#formacao", icon: <BsBook className="mr-2" /> },
@@ -77,18 +63,15 @@ export default function Header() {
     { label: "Habilidades", href: "#skills", icon: <BsCodeSlash className="mr-2" /> },
     { label: "Projetos", href: "#projects", icon: <BsCollection className="mr-2" /> },
     { label: "Contato", href: "#contact", icon: <BsEnvelope className="mr-2" /> },
+    { label: "Feedbacks", href: "#avalible", icon: <BsStars className="mr-2" /> },
   ];
 
-  // Ajuste de estilo ao rolar a página
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Captura de teclas para ativar Easter Eggs
   const handleKeyDown = useCallback((e) => {
     if (e.ctrlKey || e.altKey || e.metaKey) return;
     setTypedText(prev => (prev + e.key).slice(-20).toUpperCase());
@@ -114,47 +97,18 @@ export default function Header() {
     setTimeout(() => setActiveEasterEgg(null), config.duration);
   };
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
-  // Define as propriedades de animação com base no efeito do Easter Egg ativo
   const getAnimationProps = () => {
     if (!activeEasterEgg) return {};
-    
     const config = easterEggs[activeEasterEgg];
-    
-    switch(config.effect) {
-      case "rotate":
-        return {
-          animate: { rotate: 360 },
-          transition: { repeat: Infinity, duration: 2, ease: "linear" }
-        };
-      case "bounce":
-        return {
-          animate: { y: [0, -15, 0] },
-          transition: { repeat: Infinity, duration: 0.5 }
-        };
-      case "heartbeat":
-        return {
-          animate: { scale: [1, 1.2, 1] },
-          transition: { repeat: Infinity, duration: 1 }
-        };
-      case "shake":
-        return {
-          animate: { x: [0, 10, -10, 0] },
-          transition: { repeat: Infinity, duration: 0.3 }
-        };
-      case "robot-dance":
-        return {
-          animate: { 
-            rotate: [0, 15, -15, 0],
-            scale: [1, 1.05, 1]
-          },
-          transition: { repeat: Infinity, duration: 1 }
-        };
-      default:
-        return {};
+    switch (config.effect) {
+      case "rotate": return { animate: { rotate: 360 }, transition: { repeat: Infinity, duration: 2, ease: "linear" } };
+      case "bounce": return { animate: { y: [0, -15, 0] }, transition: { repeat: Infinity, duration: 0.5 } };
+      case "heartbeat": return { animate: { scale: [1, 1.2, 1] }, transition: { repeat: Infinity, duration: 1 } };
+      case "shake": return { animate: { x: [0, 10, -10, 0] }, transition: { repeat: Infinity, duration: 0.3 } };
+      case "robot-dance": return { animate: { rotate: [0, 15, -15, 0], scale: [1, 1.05, 1] }, transition: { repeat: Infinity, duration: 1 } };
+      default: return {};
     }
   };
 

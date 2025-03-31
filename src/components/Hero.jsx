@@ -253,7 +253,7 @@ export default function Hero() {
               {/* Expandable description */}
               <ExpandableText
                 maxLength={80} // Reduzido para telas menores
-                className="text-[10px] xs:text-xs sm:text-sm md:text-base lg:text-lg text-gray-300 leading-relaxed"
+                className="text-[10px] xs:text-xs sm:text-sm px-2 md:text-base lg:text-lg text-gray-300 leading-relaxed"
               >
                 Soluções modernas do front-end ao back-end, com APIs, DevOps, automação e foco total em performance. 
                 Sempre em busca de inovação e melhoria contínua, unindo criatividade e tecnologia para transformar ideias em realidade. 
@@ -262,7 +262,7 @@ export default function Hero() {
               {/* Botões */}
               <motion.div
                     variants={textVariants}
-                    className="flex flex-col xs:flex-row gap-1.5 xs:gap-2 justify-center md:justify-start mt-1.5 sm:mt-2"
+                    className="flex flex-col xs:flex-row gap-1.5 xs:gap-2 px-4 justify-center md:justify-start mt-1.5 sm:mt-2"
                   >
                     <button
                       onClick={() => handleZoom("perfil")}
@@ -289,15 +289,22 @@ export default function Hero() {
                 </motion.div>
             </motion.div>
           </motion.div>
+              {/* Mini-menu no rodapé da "tela" do dispositivo */}
+              <div className="
+                flex items-center justify-center gap-2
+                text-xs sm:text-sm md:text-base
+                bg-black/30 
+                px-2.5 sm:px-4 md:px-10
+                py-1.5 sm:py-2 md:py-5
+                w-[90%] sm:w-[80%] md:w-[75%] lg:w-[70%] xl:w-[65%] 2xl:w-[60%]
+                max-w-full
+                mx-auto 
+                rounded-full 
+                backdrop-blur-sm 
+                shadow-lg
+                overflow-hidden
+              ">
 
-          {/* Mini-menu no rodapé da "tela" do dispositivo */}
-          <div className="
-              flex gap-3 xs:gap-4 sm:gap-5 text-base sm:text-lg 
-              bg-black/30 px-3 xs:px-4 sm:px-5 py-2 xs:py-2.5 
-              rounded-xl backdrop-blur-sm shadow-lg
-              items-center justify-center
-              w-full max-w-[280px] xs:max-w-[320px] sm:max-w-none
-            ">
               <button 
                 onClick={() => setActiveApp("youtube")}
                 className="text-red-500 hover:scale-110 active:scale-95 transition-transform"
