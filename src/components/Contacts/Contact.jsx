@@ -313,7 +313,7 @@ export default function Contact() {
                     icon: <FiMail size={20} />,
                     label: "E-mail",
                     value: "mailto:contatogustavoribeirohm@gmail.com",
-                    copyValue: "contatogustavoribeirohm@gmail.com",
+                    copyValue: "Clique para enviar um e-mail",
                     tooltipId: "copy-email",
                     isLink: true
                   },
