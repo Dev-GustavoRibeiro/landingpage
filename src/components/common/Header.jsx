@@ -63,7 +63,7 @@ export default function Header() {
     { label: "Habilidades", href: "#skills", icon: <BsCodeSlash className="mr-2" /> },
     { label: "Projetos", href: "#projects", icon: <BsCollection className="mr-2" /> },
     { label: "Contato", href: "#contact", icon: <BsEnvelope className="mr-2" /> },
-    { label: "Feedbacks", href: "#avalible", icon: <BsStars className="mr-2" /> },
+    { label: "Feedbacks", href: "#feedbacks", icon: <BsStars className="mr-2" /> },
   ];
 
   useEffect(() => {

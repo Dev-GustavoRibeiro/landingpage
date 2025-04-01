@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import React from "react"; 
-import Particles from "./ParticlesWrapper";
+import Particles from "@/components/core/layout/ParticlesWrapper";
 
 const containerVariants = {
   hidden: {},

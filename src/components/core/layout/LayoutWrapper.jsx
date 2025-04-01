@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import Header from "./Header";
-import Footer from "./Footer";
+import Header from "@/components/common/Header";
+import Footer from "@/components/common/Footer";
 import { Code2, Network, Terminal, Server } from "lucide-react";
 import dynamic from "next/dynamic";
 

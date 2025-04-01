@@ -1,10 +1,9 @@
 "use client";
-
 import { motion } from "framer-motion";
 
 export default function StarRating({ rating, setRating }) {
   return (
-    <div className="flex gap-1">
+    <div className="flex gap-1 items-center">
       <span className="text-white">Avaliação:</span>
       {[1, 2, 3, 4, 5].map((star) => (
         <motion.button

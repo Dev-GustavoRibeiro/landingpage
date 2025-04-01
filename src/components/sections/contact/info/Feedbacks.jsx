@@ -1,56 +1,16 @@
 "use client";
-
-import { useEffect, useReducer, useMemo } from "react";
 import { motion } from "framer-motion";
 import { FiZap, FiSend } from "react-icons/fi";
-import StarRating from "./StarRating";
+import StarRating from "../shared/StarRating";
+import useFeedback from "@/hooks/useFeedback";
 
-// Estado inicial e reducer para os feedbacks
-const initialFeedbackState = {
-  feedbackData: { rating: 0, comment: "", name: "", email: "", service: "" },
-  feedbacks: [],
-  averageRating: 0
-};
-
-function feedbackReducer(state, action) {
-  switch (action.type) {
-    case "SET_FEEDBACKS":
-      return { ...state, feedbacks: action.payload, averageRating: calculateAverage(action.payload) };
-    case "ADD_FEEDBACK":
-      const updatedFeedbacks = [action.payload, ...state.feedbacks];
-      return { ...state, feedbacks: updatedFeedbacks, averageRating: calculateAverage(updatedFeedbacks) };
-    case "UPDATE_FEEDBACK_DATA":
-      return { ...state, feedbackData: { ...state.feedbackData, ...action.payload } };
-    case "RESET_FEEDBACK_DATA":
-      return { ...state, feedbackData: { rating: 0, comment: "", name: "", email: "", service: "" } };
-    default:
-      return state;
-  }
-}
-
-const calculateAverage = (feedbacks) => {
-  if (!feedbacks.length) return 0;
-  const total = feedbacks.reduce((sum, feedback) => sum + feedback.rating, 0);
-  return (total / feedbacks.length).toFixed(1);
-};
-
-export default function Avalible() {
-  const [state, dispatch] = useReducer(feedbackReducer, initialFeedbackState);
-
-  // Fetch dos feedbacks (conexão com o banco de dados)
-  useEffect(() => {
-    fetch("/api/feedbacks")
-      .then((res) => (res.ok ? res.json() : Promise.reject(`Erro HTTP: ${res.status}`)))
-      .then((data) => dispatch({ type: "SET_FEEDBACKS", payload: data }))
-      .catch((err) => console.error("Erro ao buscar feedbacks:", err));
-  }, []);
-
-  // Simplifica animações no mobile (opcional, se você quiser usar alguma lógica baseada em props, adapte)
-  const getAnimationProps = (props) => props;
+export default function Feedbacks() {
+  const { state, dispatch } = useFeedback();
 
   const handleFeedbackSubmit = async (e) => {
     e.preventDefault();
     if (!state.feedbackData.rating) return;
+    
     try {
       const res = await fetch("/api/feedbacks", {
         method: "POST",
@@ -60,8 +20,6 @@ export default function Avalible() {
           name: state.feedbackData.name || "Anônimo"
         })
       });
-      if (!res.ok) throw new Error("Erro ao enviar feedback");
-
       const newFeedback = await res.json();
       dispatch({ type: "ADD_FEEDBACK", payload: newFeedback });
       dispatch({ type: "RESET_FEEDBACK_DATA" });
@@ -72,15 +30,13 @@ export default function Avalible() {
 
   return (
     <section
-      id="avalible"
-      className="relative py-8 md:py-12 px-4 sm:px-6 lg:px-8 overflow-hidden scroll-mt-20"
+      id="feedbacks"
+      className=""
     >
       <motion.div
-        {...getAnimationProps({
-          initial: { opacity: 0, scale: 0.95 },
-          whileInView: { opacity: 1, scale: 1 },
-          transition: { duration: 0.6 }
-        })}
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.6 }}
         className="rounded-2xl md:rounded-3xl py-8 md:py-12 px-2 shadow-[0_0_20px_rgba(124,58,237,0.3)] border border-indigo-500/20 bg-gradient-to-r from-indigo-900/10 via-indigo-900/5 to-transparent"
       >
         <div className="max-w-3xl mx-auto">
@@ -160,7 +116,7 @@ export default function Avalible() {
               />
               <motion.button
                 type="submit"
-                {...getAnimationProps({ whileHover: { scale: 1.03 } })}
+                whileHover={{ scale: 1.03 }}
                 className="bg-white text-indigo-700 font-bold px-4 py-2 md:px-6 md:py-3 rounded-lg flex items-center justify-center gap-1 md:gap-2 w-full mt-2 text-sm md:text-base"
                 disabled={!state.feedbackData.rating}
               >
@@ -174,10 +130,8 @@ export default function Avalible() {
               state.feedbacks.map((f, i) => (
                 <motion.div
                   key={f.id || `feedback-${i}`}
-                  {...getAnimationProps({
-                    initial: { opacity: 0, y: 20 },
-                    animate: { opacity: 1, y: 0 }
-                  })}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
                   className="bg-gray-800/50 border border-gray-700 p-3 md:p-4 rounded-lg shadow hover:-translate-y-1 hover:shadow-lg"
                   layout
                 >

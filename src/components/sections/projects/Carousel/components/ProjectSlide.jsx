@@ -21,8 +21,11 @@ export default function ProjectSlide({ project, isActive, position }) {
   useEffect(() => {
     const checkIfMobile = () => setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
     checkIfMobile();
-    window.addEventListener("resize", checkIfMobile);
-    return () => window.removeEventListener("resize", checkIfMobile);
+    const resizeListener = () => {
+      checkIfMobile();
+    };
+    window.addEventListener("resize", resizeListener);
+    return () => window.removeEventListener("resize", resizeListener);
   }, []);
 
   const formatDate = useCallback((dateString) => {
@@ -30,77 +33,51 @@ export default function ProjectSlide({ project, isActive, position }) {
     return new Date(dateString).toLocaleDateString("pt-BR", options);
   }, []);
 
-  const slideVariantsDesktop = {
+  // Variantes simplificadas e robustas
+  const slideVariants = {
     active: {
-      scale: [1, 1.05],
+      scale: 1,
       opacity: 1,
       zIndex: 20,
-      x: "0%",
-      rotateY: 0,
-      filter: "brightness(1) drop-shadow(0 10px 20px rgba(99,102,241,0.3))",
-      transition: { ...BASE_ANIMATION, type: "spring", stiffness: 100, damping: 15 },
+      x: 0,
+      transition: { 
+        ...BASE_ANIMATION,
+        type: "spring",
+        stiffness: 100,
+        damping: 15
+      }
     },
-    next: {
-      scale: 0.92,
-      opacity: 0.9,
+    left: {
+      scale: 0.9,
+      opacity: 0.8,
       zIndex: 10,
-      x: "40%",
-      rotateY: "-15deg",
-      filter: "brightness(0.7) drop-shadow(0 5px 10px rgba(0,0,0,0.2))",
-      transition: BASE_ANIMATION,
+      x: "-60%",
+      transition: BASE_ANIMATION
     },
-    prev: {
-      scale: 0.92,
-      opacity: 0.9,
+    right: {
+      scale: 0.9,
+      opacity: 0.8,
       zIndex: 10,
-      x: "-40%",
-      rotateY: "15deg",
-      filter: "brightness(0.7) drop-shadow(0 5px 10px rgba(0,0,0,0.2))",
-      transition: BASE_ANIMATION,
+      x: "60%",
+      transition: BASE_ANIMATION
     },
     hidden: {
       scale: 0.85,
       opacity: 0,
       zIndex: 0,
-      x: `${position > 0 ? "200%" : "-200%"}`,
-      rotateY: `${position > 0 ? "-25deg" : "25deg"}`,
-      transition: BASE_ANIMATION,
-    },
+      x: position > 0 ? "120%" : "-120%",
+      transition: BASE_ANIMATION
+    }
   };
 
-  const slideVariantsMobile = {
-    active: {
-      scale: 1,
-      opacity: 1,
-      zIndex: 20,
-      x: "0%",
-      transition: { duration: 0.25 },
-    },
-    next: {
-      scale: 0.95,
-      opacity: 0,
-      zIndex: 10,
-      x: "100%",
-      transition: { duration: 0.25 },
-    },
-    prev: {
-      scale: 0.95,
-      opacity: 0,
-      zIndex: 10,
-      x: "-100%",
-      transition: { duration: 0.25 },
-    },
-    hidden: {
-      scale: 0.9,
-      opacity: 0,
-      zIndex: 0,
-      x: `${position > 0 ? "120%" : "-120%"}`,
-      transition: { duration: 0.25 },
-    },
+  const getVariant = () => {
+    if (isActive) return "active";
+    if (position === -1) return "left";
+    if (position === 1) return "right";
+    return "hidden";
   };
 
-  const slideVariants = isMobile ? slideVariantsMobile : slideVariantsDesktop;
-
+  // Restante do código permanece igual...
   const contentVariants = {
     active: { opacity: 1, y: 0, transition: { ...BASE_ANIMATION, delay: 0.15 } },
     inactive: { opacity: 0, y: 10, transition: BASE_ANIMATION },
@@ -121,13 +98,6 @@ export default function ProjectSlide({ project, isActive, position }) {
     inactive: { width: "0%", transition: { duration: 0 } },
   };
 
-  const getVariant = () => {
-    if (isActive) return "active";
-    if (position === 1) return "next";
-    if (position === -1) return "prev";
-    return "hidden";
-  };
-
   const handleImageError = (e) => {
     e.target.onerror = null;
     e.target.src = "/images/project-fallback.jpg";
@@ -142,27 +112,22 @@ export default function ProjectSlide({ project, isActive, position }) {
       variants={slideVariants}
       initial="hidden"
       animate={getVariant()}
-      whileHover={!isMobile && isActive ? { scale: 1.07 } : {}}
-      className={`absolute w-full max-w-[95vw] sm:w-[85%] md:w-[700px] lg:w-[800px] h-auto rounded-2xl p-3 sm:p-4 md:p-5 overflow-hidden flex flex-col
+      className={`absolute w-full max-w-[90vw] sm:w-[70%] md:w-[600px] h-auto rounded-2xl p-3 sm:p-4 md:p-5 overflow-hidden flex flex-col
         ${isActive
           ? "bg-gradient-to-br from-gray-900/95 via-indigo-950/90 to-gray-900/95 backdrop-blur-lg border border-indigo-500/40 shadow-lg"
           : "bg-gray-900/80 backdrop-blur-sm border border-gray-700/30 shadow-sm"}`}
-      style={{ transformStyle: "preserve-3d" }}
     >
-      {/* Imagem de Preview maior */}
+      {/* Imagem de Preview */}
       <motion.div
-        className="relative w-full h-[200px] sm:h-[240px] md:h-[300px] lg:h-[340px] rounded-lg overflow-hidden group"
-        variants={imageVariants}
-        animate={isActive ? "active" : "inactive"}
+        className="relative w-full h-[200px] sm:h-[240px] md:h-[300px] rounded-lg overflow-hidden group"
       >
-        <motion.img
+        <img
           src={
             project.previewImages?.[0] ||
             `https://raw.githubusercontent.com/Dev-GustavoRibeiro/${project.repoName}/main/preview.png`
           }
           alt={`Preview do projeto ${project.name}`}
-          loading="eager"
-          className={`w-full h-full object-contain rounded-lg transition-all duration-300 group-hover:scale-105 bg-gray-800/50`}
+          className={`w-full h-full object-cover rounded-lg transition-all duration-300 ${imageLoaded ? 'group-hover:scale-105' : ''} bg-gray-800/50`}
           onError={handleImageError}
           onLoad={handleImageLoad}
         />
