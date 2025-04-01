@@ -36,19 +36,19 @@ export default function About() {
       <img
         src="/images/computador.png"
         alt="Computador"
-        className="fixed top-10 left-6 w-10 h-10 md:w-12 md:h-12 animate-float opacity-70 pointer-events-none"
+        className="absolute top-10 left-6 w-10 h-10 md:w-12 md:h-12 animate-float opacity-70 pointer-events-none"
         loading="lazy"
       />
       <img
         src="/images/brainstorm.png"
         alt="Cérebro"
-        className="fixed bottom-6 right-6 w-8 h-8 md:w-10 md:h-10 animate-spin-slow opacity-70 pointer-events-none"
+        className="absolute bottom-6 right-6 w-8 h-8 md:w-10 md:h-10 animate-spin-slow opacity-70 pointer-events-none"
         loading="lazy"
       />
       <img
         src="/images/local-area.png"
         alt="Rede"
-        className="fixed top-10 left-1/2 -translate-x-1/2 w-8 h-8 md:w-10 md:h-10 animate-bounce opacity-70 pointer-events-none"
+        className="absolute top-10 left-1/2 -translate-x-1/2 w-8 h-8 md:w-10 md:h-10 animate-bounce opacity-70 pointer-events-none"
         loading="lazy"
       />
 
