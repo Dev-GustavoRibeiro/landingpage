@@ -10,11 +10,7 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
-<<<<<<< HEAD
     "@headlessui/react": "^2.2.0",
-=======
-    "@emotion/is-prop-valid": "^1.3.1",
->>>>>>> bea3521fa9ef4e13945494a1f24e5c97b6bf9910
     "@prisma/client": "^6.5.0",
     "clsx": "^2.1.1",
     "framer-motion": "^12.6.2",

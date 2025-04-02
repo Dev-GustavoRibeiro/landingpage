@@ -5,7 +5,7 @@ import Hero from "@/components/sections/hero/Hero";
 import About from "@/components/sections/about/About";
 import Formation from "@/components/sections/formation/Formation";
 import Experience from "@/components/sections/experience/Experience";
-import Skills from "@/components/sections/sectionskills/Skills";
+import Skills from "@/components/sections/skills/Skills";
 import Projects from "@/components/sections/projects/Carousel/ProjectsSection";
 import Contact from "@/components/sections/contact/Contact";
 import Feedbacks from "@/components/sections/contact/Feedbacks";
