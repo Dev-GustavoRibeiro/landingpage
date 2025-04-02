@@ -1,6 +1,5 @@
 "use client";
 import { useReducer, useEffect, useState } from "react";
-import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import ContactForm from "./form/ContactForm";
 import ContactInfoItem from "./info/ContactInfoItem";
@@ -22,10 +21,6 @@ import {
   FiThumbsUp
 } from "react-icons/fi";
 import Section from "@/components/core/layout/Section";
-
-// Dynamic imports
-const Particles = dynamic(() => import("react-tsparticles"), { ssr: false });
-const Confetti = dynamic(() => import("react-confetti"), { ssr: false });
 
 // Improved reducer structure
 const initialState = {
@@ -134,27 +129,7 @@ export default function Contact() {
 
     
     <Section id="contact" className="relative py-4 md:py-9 px-4 sm:px-6 lg:px-8 overflow-hidden scroll-mt-20">
-      {/* Particles Background */}
-      {!isMobile && (
-        <Particles
-          options={{
-            particles: {
-              number: { value: 60 },
-              size: { value: 3 },
-              move: { enable: true, speed: 1 },
-              color: { value: ["#a78bfa", "#4f46e5"] },
-              opacity: { value: 0.3 },
-              links: {
-                enable: true,
-                color: "#a78bfa",
-                distance: 150,
-                opacity: 0.2
-              }
-            }
-          }}
-          className="absolute inset-0 z-0"
-        />
-      )}
+
 
       <div className="relative z-10 max-w-screen-xl mx-auto">
         {/* Header Section */}
