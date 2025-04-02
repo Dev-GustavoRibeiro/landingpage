@@ -1,0 +1,30 @@
+[33mc13e0e7[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m HEAD@{0}: commit (merge): atualizações na página
+[33m6bb92a3[m HEAD@{1}: commit: atualizações na página
+[33m5d9414b[m HEAD@{2}: reset: moving to HEAD~1
+[33ma4a4fd1[m HEAD@{3}: reset: moving to HEAD~1
+[33ma61ad57[m HEAD@{4}: reset: moving to HEAD~1
+[33mf54a5d7[m HEAD@{5}: reset: moving to HEAD~1
+[33me4921ba[m HEAD@{6}: reset: moving to HEAD~1
+[33m2fa127b[m HEAD@{7}: reset: moving to HEAD~1
+[33m882a5aa[m HEAD@{8}: commit: adicionando arquivo com Git LFS
+[33m2fa127b[m HEAD@{9}: commit: atualização na section skills
+[33me4921ba[m HEAD@{10}: commit: atualização em skills
+[33mf54a5d7[m HEAD@{11}: commit: atualizações na página
+[33ma61ad57[m HEAD@{12}: commit: atualizações na página
+[33ma4a4fd1[m HEAD@{13}: commit: atualizações na página
+[33m5d9414b[m HEAD@{14}: commit: atualizações na página
+[33m312c9a8[m HEAD@{15}: commit (merge): finalizando merge
+[33md9abb00[m HEAD@{16}: commit: ajustes na section de projetos
+[33m6c98cb9[m HEAD@{17}: commit: Favicon
+[33me00876f[m HEAD@{18}: commit: atualizações no package.json
+[33m7a79938[m HEAD@{19}: commit (merge): atualizações na pagina
+[33m6b85de0[m HEAD@{20}: commit: atualizações na page
+[33m903de44[m HEAD@{21}: commit (merge): resolução de conflitos no merge
+[33maae702f[m HEAD@{22}: commit: Atualizações para subir o código
+[33m1c42a81[m HEAD@{23}: Branch: renamed refs/heads/main to refs/heads/main
+[33m1c42a81[m HEAD@{25}: Branch: renamed refs/heads/main to refs/heads/main
+[33m1c42a81[m HEAD@{27}: rebase (abort): returning to refs/heads/main
+[33m3a90544[m HEAD@{28}: pull origin main --rebase (start): checkout 3a9054426286c0bfda3058899e841ea4b103bf48
+[33m1c42a81[m HEAD@{29}: Branch: renamed refs/heads/master to refs/heads/main
+[33m1c42a81[m HEAD@{31}: commit: ajustes finais do carrossel 3D e dados dos projetos
+[33m0d1adc4[m HEAD@{32}: commit (initial): Initial commit from Create Next App
