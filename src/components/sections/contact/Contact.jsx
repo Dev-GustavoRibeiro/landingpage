@@ -112,8 +112,8 @@ export default function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch({ type: "TRIGGER_CONFETTI", payload: true });
-    setTimeout(() => dispatch({ type: "TRIGGER_CONFETTI", payload: false }), 3000);
+    dispatch({ type: "", payload: true });
+    setTimeout(() => dispatch({ type: "", payload: false }), 3000);
     
     window.open(
       `https://api.whatsapp.com/send?phone=5575992191260&text=${encodeURIComponent(
