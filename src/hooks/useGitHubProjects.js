@@ -12,15 +12,42 @@ export function useGitHubProjects(username = "Dev-GustavoRibeiro") {
   const [lastUpdated, setLastUpdated] = useState(null);
 
   const fetchGitHubData = useCallback(async (repoName) => {
+    // Verifique se o token está realmente disponível
     const token = process.env.NEXT_PUBLIC_GITHUB_TOKEN;
+    
+    if (!token) {
+      console.warn("Token do GitHub não encontrado. As requisições podem ser limitadas.");
+    }
+    
     const url = `https://api.github.com/repos/${username}/${repoName}`;
 
     try {
+      const headers = {
+        'Accept': 'application/vnd.github.v3+json'
+      };
+      
+      // Adicione o token apenas se estiver disponível
+      if (token) {
+        headers['Authorization'] = `token ${token}`;
+      }
+      
       const response = await fetch(url, {
-        headers: token ? { Authorization: `Bearer ${token}` } : {},
+        headers,
         cache: 'no-store'
       });
 
+      if (response.status === 403) {
+        console.error(`⚠️ Limite de requisições excedido ou acesso negado: ${url}`);
+        // Retorne um objeto mínimo para continuar o fluxo
+        return { 
+          name: repoName,
+          default_branch: 'main',
+          stargazers_count: 0,
+          forks_count: 0,
+          html_url: `https://github.com/${username}/${repoName}`
+        };
+      }
+      
       if (!response.ok) {
         console.warn(`⚠️ Não foi possível acessar: ${url} (Status: ${response.status})`);
         return null;
@@ -45,13 +72,19 @@ export function useGitHubProjects(username = "Dev-GustavoRibeiro") {
       return baseProject;
     }
 
+    // Tente obter dados do GitHub, mas continue mesmo se falhar
     const githubData = await fetchGitHubData(project.repoName);
 
     // Fallback para preview image
     const previewFallback = "/images/project-fallback.jpg";
-    const previewImage = githubData 
-      ? `https://raw.githubusercontent.com/${username}/${project.repoName}/main/preview.jpg`
-      : previewFallback;
+    
+    // Use a branch padrão ou 'main' como fallback
+    const defaultBranch = githubData?.default_branch || 'main';
+    
+    // Construa a URL da imagem diretamente, sem depender da API do GitHub
+    // Adicione um timestamp para evitar cache
+    const timestamp = new Date().getTime();
+    const previewUrl = `https://raw.githubusercontent.com/${username}/${project.repoName}/${defaultBranch}/preview.jpg?v=${timestamp}`;
 
     return {
       ...baseProject,
@@ -59,7 +92,7 @@ export function useGitHubProjects(username = "Dev-GustavoRibeiro") {
       forks: githubData?.forks_count || 0,
       lastUpdated: githubData?.updated_at || project.createdAt,
       repoUrl: githubData?.html_url || `https://github.com/${username}/${project.repoName}`,
-      previewImages: [previewImage],
+      previewImages: [previewUrl, previewFallback], // Inclua o fallback como segunda opção
       liveUrl: project.liveUrl || githubData?.homepage || null
     };
   }, [fetchGitHubData, username]);
@@ -99,18 +132,6 @@ export function useGitHubProjects(username = "Dev-GustavoRibeiro") {
 
     return () => clearInterval(interval);
   }, [loadProjects]);
-
-  // Pré-carregamento das imagens
-  useEffect(() => {
-    if (projects.length > 0) {
-      projects.forEach((project) => {
-        if (project.previewImages?.[0]) {
-          const img = new Image();
-          img.src = project.previewImages[0];
-        }
-      });
-    }
-  }, [projects]);
 
   return { 
     projects, 
