@@ -99,3 +99,42 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+@keyframes gradient-x {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.animate-gradient-x {
+  background-size: 200% 200%;
+  animation: gradient-x 8s ease infinite;
+}
+
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* Adicione esses estilos ao seu arquivo global de CSS */
+.hero-glow {
+  filter: drop-shadow(0 0 10px rgba(124, 58, 237, 0.5));
+}
+
+.text-shadow {
+  text-shadow: 0 0 10px rgba(124, 58, 237, 0.5);
+}

@@ -3,12 +3,12 @@ import LayoutWrapper from "@/components/core/layout/LayoutWrapper";
 import Section from "@/components/core/layout/Section";
 import Hero from "@/components/sections/hero/Hero";
 import About from "@/components/sections/about/About";
-import Formation from "@/components/sections/about/Formation";
-import Experience from "@/components/sections/about/Experience";
+import Formation from "@/components/sections/formation/Formation";
+import Experience from "@/components/sections/experience/Experience";
 import Skills from "@/components/sections/sectionskills/Skills";
 import Projects from "@/components/sections/projects/Carousel/ProjectsSection";
 import Contact from "@/components/sections/contact/Contact";
-import Feedbacks from "@/components/sections/contact/info/Feedbacks";
+import Feedbacks from "@/components/sections/contact/Feedbacks";
 
 export default async function Home() {
   return (

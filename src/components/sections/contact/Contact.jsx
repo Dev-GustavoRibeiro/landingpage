@@ -1,11 +1,11 @@
 "use client";
 import { useReducer, useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import ContactForm from "./form/ContactForm";
-import ContactInfoItem from "./info/ContactInfoItem";
-import SocialLinks from "./info/SocialLinks";
-import ContactTabs from "./ContactTabs";
-import StatCard from "./shared/StatCard";
+import ContactForm from "./components/ContactForm";
+import ContactInfoItem from "./components/ContactInfoItem";
+import SocialLinks from "./components/SocialLinks";
+import ContactTabs from "./components/ContactTabs";
+import StatCard from "./components/StatCard";
 import {
   FiPhone,
   FiMail,

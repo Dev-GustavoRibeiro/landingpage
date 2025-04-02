@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { FiZap, FiSend } from "react-icons/fi";
-import StarRating from "../shared/StarRating";
+import StarRating from "./components/StarRating";
 import useFeedback from "@/hooks/useFeedback";
 
 export default function Feedbacks() {
